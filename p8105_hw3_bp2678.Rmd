@@ -63,3 +63,19 @@ answer_2010
 There are 45 states that were visted more than 7 times in 2010
 
 
+Making the Graph 
+```{r}
+Excellent_only <- brfss_smart2010_df |>
+  filter(response == "Excellent") |>
+  group_by(year, States) %>%
+  summarize(avg_data_value = mean(data_value, na.rm = TRUE)) |>
+  ungroup()
+
+ggplot(Excellent_only, aes(x = year, y = avg_data_value, group = States, color = States)) +
+  geom_line() +
+  labs(title = "Average Data Value Over Time by State",
+       x = "Year",
+       y = "Average Data Value") +
+  theme_minimal()
+```
+
