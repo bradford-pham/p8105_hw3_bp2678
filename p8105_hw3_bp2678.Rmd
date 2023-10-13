@@ -31,8 +31,35 @@ brfss_smart2010_df = brfss_smart2010 |>
 
 ```
 
-#I renamed the variables like locationabbr to "States" and locationdesc to "County". I also
-#organized the responses from poor to excellent where poor starts first. Addtionally, I filter
-#the responses in topic where it is "overall health"
+I renamed the variables like locationabbr to "States" and locationdesc to "County". I also
+organized the responses from poor to excellent where poor starts first. Addtionally, I filter
+the responses in topic where it is "overall health".
+
+```{r}
+newdataset_2002 <- 
+  brfss_smart2010_df |>  
+  filter(year == "2002")
+
+answer_2002 <- newdataset_2002 |> 
+  count(States) |>  
+  filter(n >= 7)
+answer_2002
+```
+
+There are 36 states that were visted more than 7 times in 2002
+
+```{r}
+newdataset_2010 <- 
+  brfss_smart2010_df |>  
+  filter(year == "2010")
+
+answer_2010 <- newdataset_2010 |> 
+  count(States) |>  
+  filter(n >= 7)
+answer_2010
+
+```
+
+There are 45 states that were visted more than 7 times in 2010
 
 
