@@ -1,0 +1,38 @@
+---
+title: "p8105_hw3_bp2678"
+author: "Brady Pham"
+date: 2023-10-12
+output: github_document
+---
+```{r}
+library(tidyverse)
+library(dplyr)
+library(moderndive)
+```
+
+#QUESTION 2 
+```{r}
+library(p8105.datasets)
+data("brfss_smart2010")
+
+```
+
+```{r}
+brfss_smart2010_df = brfss_smart2010 |>
+  janitor::clean_names() |>
+  rename(States = locationabbr,
+          County = locationdesc) |>
+  filter(response %in% c("Excellent", "Very Good", "Good", "Fair", "Poor")) |>
+  filter(topic == "Overall Health") |>
+  mutate(
+    response = factor(response, levels = c("Poor", "Fair", "Good", "Very Good", "Excellent"),
+                      ordered = TRUE)) |>
+  arrange(response)
+
+```
+
+#I renamed the variables like locationabbr to "States" and locationdesc to "County". I also
+#organized the responses from poor to excellent where poor starts first. Addtionally, I filter
+#the responses in topic where it is "overall health"
+
+
