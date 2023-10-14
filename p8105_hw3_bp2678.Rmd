@@ -128,3 +128,47 @@ accel_covar <- inner_join(nhanes_covar_df, nhanes_accel_df, by = "seqn") |>
 
 ```
 
+
+```{r}
+men_women <- accel_covar |>
+  group_by(education, sex) |>
+  summarize(count = n()) |>
+  pivot_wider(names_from = sex, values_from = count)
+
+print(men_women)
+
+```
+
+For high school equivalent there are 23 females and 35 males
+For less than high school there are 28 females and 27 males 
+For more than high school there are 59 females and 56 males
+
+```{r}
+age_distribution_plot <- ggplot(accel_covar, aes(x = education, y = age, fill = sex)) +
+  geom_boxplot() +
+  labs(title = "Age Distributions by Education and Gender",
+       x = "Education Category",
+       y = "Age") +
+  theme_minimal()
+
+print(age_distribution_plot)
+
+median_age_table <- accel_covar |>
+  group_by(education, sex) |>
+  summarize(median_age = median(age, na.rm = TRUE))
+
+
+```
+
+
+In high school equivlaent category it seems that females are older than males. The 
+median age for females is around 62 while for males the median age seems to be 53. 
+
+In less than high school category it  seems to be fairly equal with distribution that males distribution tend to be a little bit more wider than females. The median age for females seems to be around 61 while males is 60. 
+
+In more than high school category it seems to be fairly equal with both gender with males having a little bit wider of a distribution compared to females. The media age for females seems to be 41 while males seems to be 43.5. 
+
+
+
+
+
