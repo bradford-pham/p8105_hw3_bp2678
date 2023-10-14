@@ -93,3 +93,30 @@ ggplot(NewYork_only, aes(x = response, y = data_value)) +
   theme_minimal()
 ```
 
+
+#Question 3 
+
+```{r}
+nhanes_accel_df = 
+  read_csv("DATA/nhanes_accel.csv",) |>
+  janitor::clean_names() 
+```
+
+```{r}
+  nhanes_covar_df = 
+  read_csv("data/nhanes_covar.csv", skip = 4) |>
+  janitor::clean_names() |>
+  mutate(
+    sex = recode(
+      sex,
+      `1` = "male",
+      `2` = "female")) |>
+  mutate(
+  education = recode(
+    education,
+    `1` = "less than high school",
+    `2` = "high school equivalent",
+    `3` = "more than high school"))
+```
+
+
