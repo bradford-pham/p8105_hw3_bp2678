@@ -76,7 +76,7 @@ ggplot(Excellent_only, aes(x = year, y = avg_data_value, group = States, color =
   labs(title = "Average Data Value Over Time by State",
        x = "Year",
        y = "Average Data Value") +
-  theme_minimal()
+  theme_bw()
 ```
 
 Made NewYork graph
@@ -90,7 +90,7 @@ ggplot(NewYork_only, aes(x = response, y = data_value)) +
   labs(title = "Distribution of Data Value in NY State by Response",
        x = "Response",
        y = "Data Value") +
-  theme_minimal()
+  theme_bw()
 ```
 
 
@@ -149,7 +149,7 @@ age_distribution_plot <- ggplot(accel_covar, aes(x = education, y = age, fill = 
   labs(title = "Age Distributions by Education and Gender",
        x = "Education Category",
        y = "Age") +
-  theme_minimal()
+  theme_bw()
 
 print(age_distribution_plot)
 
@@ -179,4 +179,18 @@ accel_covar |>
   theme_bw()
 ```
 
+In all three graphs there is a similar tend that as increases the total acitvity seems to decrease. In high school equivalent it seems that both genders increase in their total acitvity until they hit around the age of 40 and they start to decrease. Females tend to have a greater total activity than males in less than high school graph it seems like the total activitye for male and female do decrease as age increase but then as the age hits around late 50's theres a small spike of increase of total activity between both gender. Addtionally it looks like female had a higher total activity at first but as age increase males tend to have more of total activity. In more than high school the graph looks like a geneeral decrease of total acitvity as age increases and that females tend to have more. 
 
+```{r}
+accel_covar |>
+   pivot_longer(
+    min1:min1440,
+    names_to = "minute_counts",
+    values_to = "minutes") |> 
+  ggplot(aes(x = minute_counts, y = minutes, group = sex, color = sex)) + 
+  geom_point(alpha = 0.5) + 
+  facet_wrap(. ~ education) +
+  theme_bw()
+```
+
+It seems that as high school increases so does the minutues. Adtionally males that are in more than high school have very high minutes compared to everyone else in the graph to the point where they look like outliers. 
