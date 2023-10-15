@@ -169,6 +169,14 @@ In less than high school category it  seems to be fairly equal with distribution
 In more than high school category it seems to be fairly equal with both gender with males having a little bit wider of a distribution compared to females. The media age for females seems to be 41 while males seems to be 43.5. 
 
 
-
+```{r}
+accel_covar |>
+  mutate(total_actitivty = rowSums(across(c(min1:min1440)))) |>
+  ggplot(aes(x = age, y = total_actitivty, group = sex, color = sex)) + 
+  geom_point(alpha = 0.5) + 
+  facet_wrap(. ~ education) + 
+  geom_smooth(se = FALSE) +
+  theme_bw()
+```
 
 
