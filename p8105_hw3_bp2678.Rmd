@@ -194,3 +194,6 @@ accel_covar |>
 ```
 
 It seems that as high school increases so does the minutues. Adtionally males that are in more than high school have very high minutes compared to everyone else in the graph to the point where they look like outliers. 
+
+
+hello
